@@ -1,7 +1,18 @@
 {
   "points_depart": 1000.0,
-  "cash_points": 1000.0,
-  "positions": [],
+  "cash_points": 950.0,
+  "positions": [
+    {
+      "id": 1,
+      "ticker": "FNTN.DE",
+      "nom": "freenet AG                    N",
+      "prix_entree": 25.22,
+      "points_investis": 50.0,
+      "parts": 1.982554,
+      "date_entree": "2026-06-17",
+      "score_entree": 95
+    }
+  ],
   "historique": [],
-  "next_id": 1
+  "next_id": 2
 }
