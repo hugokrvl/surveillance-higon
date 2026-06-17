@@ -1,6 +1,6 @@
 {
   "points_depart": 1000.0,
-  "cash_points": 850.0,
+  "cash_points": 800.0,
   "positions": [
     {
       "id": 1,
@@ -31,8 +31,18 @@
       "parts": 1.296008,
       "date_entree": "2026-06-17",
       "score_entree": 80
+    },
+    {
+      "id": 4,
+      "ticker": "TRI.PA",
+      "nom": "TRIGANO",
+      "prix_entree": 141.1,
+      "points_investis": 50.0,
+      "parts": 0.354359,
+      "date_entree": "2026-06-17",
+      "score_entree": 75
     }
   ],
   "historique": [],
-  "next_id": 4
+  "next_id": 5
 }
