@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-Surveillance marche — Methode William Higon (Independance AM)
-Scan automatique toutes les heures en heures de bourse (9h-17h30 Paris, lun-ven).
-Notifs push via app ntfy (gratuit).
+Surveillance marche — Methode William Higgons (Independance AM)
+Scan quotidien (18h Paris, lun-ven) lance par GitHub Actions : `python surveillance.py --scan`.
+Produit signals.json + alert_state.json, envoie un resume quotidien (1 notif) via ntfy.
+Le mode `main()` (sans --scan) garde une boucle locale optionnelle pour tester.
 """
 import sys
 import json
