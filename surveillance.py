@@ -14,17 +14,48 @@ from pathlib import Path
 
 from config import WATCHLIST, PORTEFEUILLE, SCAN_INTERVAL_MINUTES, SCAN_TIME, SCORE_NOTIF_MIN, NTFY_TOPIC
 from scorer import fetch_fundamentals, higon_score
-from notifier import notify_signal, notify_sell_alert, notify_warning, notify_test
+from notifier import notify_digest, notify_sell_alert, notify_warning, notify_test
 import portfolio
 
-SIGNALS_FILE = Path(__file__).parent / "signals.json"
+SIGNALS_FILE     = Path(__file__).parent / "signals.json"
+ALERT_STATE_FILE = Path(__file__).parent / "alert_state.json"
 
 PARIS_TZ = pytz.timezone("Europe/Paris")
 
-# Anti-doublon : on memorise le dernier statut envoye par ticker
-_last_signal:    dict[str, str]   = {}   # ticker -> statut
+# État PERSISTANT entre les scans (sauvegardé dans alert_state.json sur GitHub)
+# pour ne notifier que les CHANGEMENTS, pas re-spammer chaque jour.
 _last_sell_lvl:  dict[str, str]   = {}   # ticker -> "15"/"17"/"20"
 _last_warn_hash: dict[str, str]   = {}   # ticker -> hash des warnings
+
+
+def _load_alert_state():
+    if ALERT_STATE_FILE.exists():
+        try:
+            with open(ALERT_STATE_FILE, encoding="utf-8") as f:
+                return json.load(f)
+        except Exception:
+            pass
+    return {"sell": {}, "warn": {}}
+
+
+def _save_alert_state():
+    try:
+        with open(ALERT_STATE_FILE, "w", encoding="utf-8") as f:
+            json.dump({"sell": _last_sell_lvl, "warn": _last_warn_hash},
+                      f, ensure_ascii=False, indent=2)
+    except Exception as e:
+        print(f"[ERREUR] ecriture alert_state.json : {e}")
+
+
+def _previous_signal_tickers() -> set[str]:
+    """Tickers des signaux du scan PRÉCÉDENT (pour repérer les nouveautés)."""
+    if SIGNALS_FILE.exists():
+        try:
+            with open(SIGNALS_FILE, encoding="utf-8") as f:
+                return {s["ticker"] for s in json.load(f).get("signaux", [])}
+        except Exception:
+            pass
+    return set()
 
 
 def is_market_hours() -> bool:
@@ -48,6 +79,13 @@ def scan_all():
     held = portfolio.held_tickers() | set(PORTEFEUILLE)
     tickers = sorted(set(WATCHLIST) | held)
     signaux = []   # signaux d'achat -> signals.json (lu par le site local)
+
+    # État persistant + signaux de la veille (pour ne notifier que le neuf)
+    st = _load_alert_state()
+    _last_sell_lvl.clear();  _last_sell_lvl.update(st.get("sell", {}))
+    _last_warn_hash.clear(); _last_warn_hash.update(st.get("warn", {}))
+    prev_tickers = _previous_signal_tickers()
+
     print(f"\n{'='*65}")
     print(f"[{_now()}] SCAN — {len(tickers)} actions ({len(held)} detenues)")
     print(f"{'='*65}")
@@ -60,15 +98,22 @@ def scan_all():
             print(f"     [ERREUR ignoree] {ticker}: {e}")
             continue
 
-    # ── Écriture signals.json (lu par le site local) ──────────────────────
+    # ── Résumé quotidien (UNE notif) ──────────────────────────────────────
     signaux.sort(key=lambda s: s["score"], reverse=True)
+    nouveaux = [s for s in signaux if s["ticker"] not in prev_tickers]
+    n_clean  = sum(1 for s in signaux if not s.get("flags"))
+    if signaux:
+        notify_digest(len(signaux), n_clean, nouveaux, top=signaux)
+
+    # ── Écriture signals.json (lu par le site local) + état ───────────────
     payload = {"date": _now(), "nb": len(signaux), "signaux": signaux}
     try:
         with open(SIGNALS_FILE, "w", encoding="utf-8") as fp:
             json.dump(payload, fp, ensure_ascii=False, indent=2)
-        print(f"\n[{_now()}] {len(signaux)} signal(aux) ecrit(s) dans signals.json")
+        print(f"\n[{_now()}] {len(signaux)} signal(aux) ecrit(s) ({len(nouveaux)} nouveaux)")
     except Exception as e:
         print(f"\n[ERREUR] ecriture signals.json : {e}")
+    _save_alert_state()
 
     print(f"[{_now()}] Scan termine. Prochain scan demain a {SCAN_TIME}.\n")
 
@@ -94,7 +139,7 @@ def _scan_ticker(ticker: str, signaux: list, held: set):
         for a in result.get("alerts", []):
             print(f"     [VENTE] {a}")
 
-        # ── Notif signal achat + enregistrement dans signals.json ─────────
+        # ── Enregistrement signal achat (notifié via le digest quotidien) ─
         if elig and score >= SCORE_NOTIF_MIN:
             signaux.append({
                 "ticker":    ticker,
@@ -110,11 +155,6 @@ def _scan_ticker(ticker: str, signaux: list, held: set):
                 "sector":    data.get("sector"),
                 "flags":     result.get("flags", []),
             })
-            if _last_signal.get(ticker) != statut:
-                notify_signal(data, result)
-                _last_signal[ticker] = statut
-        elif ticker in _last_signal and not elig:
-            del _last_signal[ticker]   # reset si l'action n'est plus eligible
 
         # ── Notif alertes vente (3 paliers : 15 / 17 / 20) ──────────────
         # Uniquement pour les actions DÉTENUES, sinon spam.

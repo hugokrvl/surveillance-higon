@@ -58,6 +58,34 @@ def notify_signal(data: dict, result: dict):
         print(f"  [NOTIF] Signal achat envoye pour {ticker} (score={score})")
 
 
+def notify_digest(total: int, n_clean: int, nouveaux: list[dict], top: list[dict]):
+    """Résumé quotidien : UNE notif avec le bilan des signaux du jour."""
+    lines = [f"{total} signaux Higgons aujourd'hui ({n_clean} sans drapeau)."]
+
+    if nouveaux:
+        items = ", ".join(f"{s['ticker']}({s['score']})" for s in nouveaux[:8])
+        suffix = "..." if len(nouveaux) > 8 else ""
+        lines.append(f"NOUVEAUX ({len(nouveaux)}) : {items}{suffix}")
+    else:
+        lines.append("Aucun nouveau signal depuis hier.")
+
+    if top:
+        tops = ", ".join(f"{s['ticker']} {s['score']}" for s in top[:5])
+        lines.append(f"Top : {tops}")
+
+    lines.append("Ouvre le site pour decider tes positions.")
+
+    title = f"Higgons — {total} signaux"
+    if nouveaux:
+        title += f" ({len(nouveaux)} nouveaux)"
+    priority = "high" if nouveaux else "default"
+
+    sent = _post(title, "\n".join(lines), priority, tags=["bar_chart"])
+    if sent:
+        print(f"  [NOTIF] Resume quotidien envoye ({total} signaux, {len(nouveaux)} nouveaux)")
+    return sent
+
+
 def notify_sell_alert(data: dict, pe: float):
     """Alertes vente selon les paliers PE 15 / 17 / 20 de la methode Higon."""
     ticker = data["ticker"]
