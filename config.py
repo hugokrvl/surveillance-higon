@@ -72,6 +72,14 @@ WATCHLIST = [
     "NVG.LS", "PHR.LS", "RENE.LS", "SEM.LS", "SON.LS", "SONC.LS",
 ]
 
+# ── Ton portefeuille (actions DÉTENUES) ────────────────────────────────────
+# Les alertes de VENTE (PE >= 15 / 17 / 20) ne se déclenchent QUE pour ces
+# actions — pas sur les 314 de la watchlist (sinon spam de notifs inutiles).
+# Ajoute ici les tickers Yahoo des actions que tu possèdes réellement.
+PORTEFEUILLE = [
+    # "MRN.PA",   # exemple : Mersen
+]
+
 # ── Critères Higon (modifiable) ────────────────────────────────────────────
 PE_MAX        = 12    # PE strict (éliminatoire si dépassé)
 PE_IDEAL_MAX  = 8     # PE "zone idéale"

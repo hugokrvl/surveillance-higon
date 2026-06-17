@@ -10,7 +10,7 @@ import schedule
 import datetime
 import pytz
 
-from config import WATCHLIST, SCAN_INTERVAL_MINUTES, SCAN_TIME, SCORE_NOTIF_MIN, NTFY_TOPIC
+from config import WATCHLIST, PORTEFEUILLE, SCAN_INTERVAL_MINUTES, SCAN_TIME, SCORE_NOTIF_MIN, NTFY_TOPIC
 from scorer import fetch_fundamentals, higon_score
 from notifier import notify_signal, notify_sell_alert, notify_warning, notify_test
 
@@ -39,11 +39,12 @@ def _sell_level(pe: float) -> str | None:
 
 
 def scan_all():
+    tickers = sorted(set(WATCHLIST) | set(PORTEFEUILLE))
     print(f"\n{'='*65}")
-    print(f"[{_now()}] SCAN — {len(WATCHLIST)} actions")
+    print(f"[{_now()}] SCAN — {len(tickers)} actions ({len(PORTEFEUILLE)} en portefeuille)")
     print(f"{'='*65}")
 
-    for ticker in WATCHLIST:
+    for ticker in tickers:
         print(f"\n  > {ticker}")
         data = fetch_fundamentals(ticker)
         if data is None:
@@ -74,7 +75,8 @@ def scan_all():
             del _last_signal[ticker]   # reset si l'action n'est plus eligible
 
         # ── Notif alertes vente (3 paliers : 15 / 17 / 20) ──────────────
-        if pe is not None:
+        # Uniquement pour les actions DÉTENUES (portefeuille), sinon spam.
+        if pe is not None and ticker in PORTEFEUILLE:
             lvl = _sell_level(pe)
             if lvl and _last_sell_lvl.get(ticker) != lvl:
                 notify_sell_alert(data, pe)
