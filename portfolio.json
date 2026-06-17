@@ -1,6 +1,6 @@
 {
   "points_depart": 1000.0,
-  "cash_points": 950.0,
+  "cash_points": 900.0,
   "positions": [
     {
       "id": 1,
@@ -11,8 +11,18 @@
       "parts": 1.982554,
       "date_entree": "2026-06-17",
       "score_entree": 95
+    },
+    {
+      "id": 2,
+      "ticker": "A2A.MI",
+      "nom": "A2A",
+      "prix_entree": 2.235,
+      "points_investis": 50.0,
+      "parts": 22.371365,
+      "date_entree": "2026-06-17",
+      "score_entree": 90
     }
   ],
   "historique": [],
-  "next_id": 2
+  "next_id": 3
 }
