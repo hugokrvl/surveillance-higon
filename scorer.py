@@ -49,6 +49,8 @@ def fetch_fundamentals(ticker: str) -> dict | None:
         cf   = t.cashflow
 
         name      = info.get("shortName") or ticker
+        sector    = info.get("sector") or ""
+        industry  = info.get("industry") or ""
         price     = _num(info.get("currentPrice") or info.get("regularMarketPrice"))
         currency  = info.get("currency", "")
         mkt_cap   = _num(info.get("marketCap"))
@@ -113,6 +115,8 @@ def fetch_fundamentals(ticker: str) -> dict | None:
         return {
             "ticker":           ticker,
             "name":             name,
+            "sector":           sector,
+            "industry":         industry,
             "price":            price,
             "currency":         currency,
             "market_cap":       mkt_cap,
@@ -136,6 +140,44 @@ def fetch_fundamentals(ticker: str) -> dict | None:
     except Exception as e:
         print(f"  [ERREUR] {ticker}: {e}")
         return None
+
+
+def classify_traps(data: dict) -> list[str]:
+    """
+    Détecte les cas où la méthode Higon (PE/ROE/BFR/croissance CA) s'applique
+    mal — à surfacer pour que l'humain tranche. Renvoie une liste de drapeaux.
+    """
+    flags    = []
+    sector   = (data.get("sector") or "").lower()
+    industry = (data.get("industry") or "").lower()
+    name     = (data.get("name") or "").upper()
+    pe       = data.get("pe")
+    roe      = data.get("roe")
+    ca       = data.get("ca_growth")
+
+    is_financial = ("financial" in sector) or any(
+        k in industry for k in ("bank", "insurance", "capital markets", "asset management")
+    )
+    is_holding = any(k in name for k in (
+        "HOLDING", "INVESTOR", "INDUSTRIV", "SGPS", "INVEST AB", "PROSUS",
+        "EXOR", "GROUPE BRUXELLES", "WENDEL", "EURAZEO",
+    ))
+
+    if is_holding:
+        flags.append("HOLDING — PE/ROE/croissance fausses par la valeur des participations")
+    elif is_financial:
+        flags.append("FINANCIERE — ratios PE/ROE/BFR non comparables (metier = taux)")
+
+    # Cyclique : bénéfice possiblement au sommet du cycle
+    if ("basic materials" in sector) or ("energy" in sector) or ("airlines" in industry) \
+       or ("auto" in industry and "parts" not in industry) or ("steel" in industry):
+        flags.append("CYCLIQUE — benefice possiblement au pic, PE bas trompeur")
+
+    # Value trap optique : PE tres bas + ROE tres haut = souvent capitaux propres minuscules
+    if pe is not None and roe is not None and pe < 4 and roe > 40:
+        flags.append("PIC POSSIBLE — PE tres bas + ROE tres haut, verifier la recurrence")
+
+    return flags
 
 
 def higon_score(data: dict) -> dict:
@@ -286,12 +328,20 @@ def higon_score(data: dict) -> dict:
         detail["CAPEX"] = f"EN BAISSE ({capex_growth:.1f}%) — possible mode vache a lait"
         warnings.append("CAPEX en forte baisse : verifier si la societe redistribue plutot qu'elle n'investit")
 
+    # Plafond d'affichage à 100 (le cumul théorique peut monter à 110)
+    score = min(score, 100)
+
+    # ── Drapeaux "pièges Higon" (financières, holdings, cycliques) ────────
+    flags = classify_traps(data)
+
     # ── ELIGIBILITE FINALE ────────────────────────────────────────────────
     # Les 3 criteres DOIVENT etre verts simultanement (regle d'or Higon)
     eligible = pe_ok and roe_ok and ca_ok
 
     if not eligible:
         statut = "HORS FILTRE"
+    elif flags:
+        statut = "A VERIFIER — signal mais methode peu fiable ici (voir drapeaux)"
     elif score >= 80:
         statut = "FORT — initier position (3 tranches)"
     elif score >= 60:
@@ -306,4 +356,5 @@ def higon_score(data: dict) -> dict:
         "detail":   detail,
         "warnings": warnings,
         "alerts":   alerts,   # alertes vente PE 15/17/20
+        "flags":    flags,    # pieges methode Higon
     }

@@ -24,6 +24,10 @@
   .pos{color:var(--green)} .neg{color:var(--red)}
   .badge{display:inline-block;padding:2px 7px;border-radius:6px;font-size:11px;font-weight:600;background:#16261a;color:var(--green)}
   .badge.warn{background:#2a2410;color:var(--gold)}
+  .badge.trap{background:#2a1414;color:var(--red)}
+  .flagline{margin-top:4px;display:flex;flex-direction:column;gap:2px}
+  .flag{font-size:11px;color:var(--red)}
+  .toggle{font-size:13px;color:var(--muted);display:flex;gap:6px;align-items:center;margin:6px 0 0}
   input,button,select{font:inherit;border-radius:7px;border:1px solid var(--line);background:#0e141d;color:var(--txt);padding:7px 9px}
   button{cursor:pointer;background:var(--accent);border:none;color:#fff;font-weight:600}
   button.ghost{background:transparent;border:1px solid var(--line);color:var(--muted)}
@@ -96,12 +100,16 @@
 <!-- ───────────── SIGNAUX D'ACHAT ───────────── -->
 <h2>Signaux d'achat Higon ({{ signals.signaux|length }})</h2>
 {% if signals.signaux %}
-<table>
+<label class="toggle"><input type="checkbox" id="hideTraps" onchange="filterTraps()">
+  Masquer les pièges Higon (financières · holdings · cycliques)</label>
+<table id="sigTable">
   <tr><th>Action</th><th>Score</th><th>PE</th><th>ROE</th><th>CA</th><th>Prix</th><th>Prendre position</th></tr>
   {% for s in signals.signaux %}
-  <tr>
-    <td><b>{{ s.ticker }}</b> {% if s.ticker in held %}<span class="badge">détenue</span>{% endif %}<br>
-        <span class="mini">{{ s.nom }}</span></td>
+  <tr class="{{ 'is-trap' if s.flags else '' }}">
+    <td><b>{{ s.ticker }}</b> {% if s.ticker in held %}<span class="badge">détenue</span>{% endif %}
+        {% if s.flags %}<span class="badge trap">à vérifier</span>{% endif %}<br>
+        <span class="mini">{{ s.nom }}</span>
+        {% if s.flags %}<span class="flagline">{% for fl in s.flags %}<span class="flag">⚑ {{ fl }}</span>{% endfor %}</span>{% endif %}</td>
     <td><span class="badge {{ '' if s.score>=80 else 'warn' }}">{{ s.score }}/100</span></td>
     <td>{{ '%.1f'|format(s.pe) if s.pe else 'N/D' }}x</td>
     <td>{{ '%.1f'|format(s.roe) if s.roe else 'N/D' }}%</td>
@@ -157,6 +165,12 @@
 {% endif %}
 
 <script>
+function filterTraps(){
+  const hide = document.getElementById('hideTraps').checked;
+  document.querySelectorAll('#sigTable tr.is-trap').forEach(r=>{
+    r.style.display = hide ? 'none' : '';
+  });
+}
 function getPrix(){
   const t = document.getElementById('m_ticker').value.trim().toUpperCase();
   if(!t){return}

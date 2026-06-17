@@ -107,6 +107,8 @@ def _scan_ticker(ticker: str, signaux: list, held: set):
                 "bfr_pct":   data.get("bfr_pct"),
                 "price":     data.get("price"),
                 "currency":  data.get("currency"),
+                "sector":    data.get("sector"),
+                "flags":     result.get("flags", []),
             })
             if _last_signal.get(ticker) != statut:
                 notify_signal(data, result)
