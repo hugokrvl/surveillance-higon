@@ -125,8 +125,11 @@ def _scan_ticker(ticker: str, signaux: list, held: set):
                 del _last_sell_lvl[ticker]   # PE redescend sous 15 → reset
 
         # ── Notif warnings secondaires (BFR, habillage, CAPEX) ───────────
+        # Uniquement pour les positions DÉTENUES (sinon spam sur 314 actions).
+        # Pour les candidats à l'achat, les warnings sont déjà inclus dans la
+        # notif de signal (notify_signal).
         warnings = result.get("warnings", [])
-        if warnings:
+        if warnings and ticker in held:
             h = "|".join(sorted(warnings))
             if _last_warn_hash.get(ticker) != h:
                 notify_warning(data, warnings)
