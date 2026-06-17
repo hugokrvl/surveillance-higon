@@ -1,282 +1,359 @@
 {
-  "date": "17/06/2026 11:41",
+  "date": "17/06/2026 12:18",
   "nb": 23,
   "signaux": [
-    {
-      "ticker": "PRX.AS",
-      "nom": "PROSUS",
-      "score": 110,
-      "statut": "FORT — initier position (3 tranches)",
-      "pe": 7.8734937,
-      "roe": 26.021,
-      "ca_growth": 22.3,
-      "bfr_pct": 2.2528363047001623,
-      "price": 39.21,
-      "currency": "EUR"
-    },
     {
       "ticker": "AF.PA",
       "nom": "AIR FRANCE -KLM",
       "score": 100,
-      "statut": "FORT — initier position (3 tranches)",
-      "pe": 2.214156,
+      "statut": "A VERIFIER — signal mais methode peu fiable ici (voir drapeaux)",
+      "pe": 2.2232304,
       "roe": 93.337,
       "ca_growth": 4.3999999999999995,
       "bfr_pct": 1.4693852819098978,
-      "price": 12.2,
-      "currency": "EUR"
+      "price": 12.25,
+      "currency": "EUR",
+      "sector": "Industrials",
+      "flags": [
+        "CYCLIQUE — benefice possiblement au pic, PE bas trompeur",
+        "PIC POSSIBLE — PE tres bas + ROE tres haut, verifier la recurrence"
+      ]
+    },
+    {
+      "ticker": "PRX.AS",
+      "nom": "PROSUS",
+      "score": 100,
+      "statut": "A VERIFIER — signal mais methode peu fiable ici (voir drapeaux)",
+      "pe": 7.88755,
+      "roe": 26.021,
+      "ca_growth": 22.3,
+      "bfr_pct": 2.2528363047001623,
+      "price": 39.28,
+      "currency": "EUR",
+      "sector": "Consumer Cyclical",
+      "flags": [
+        "HOLDING — PE/ROE/croissance fausses par la valeur des participations"
+      ]
     },
     {
       "ticker": "FNTN.DE",
       "nom": "freenet AG                    N",
       "score": 95,
       "statut": "FORT — initier position (3 tranches)",
-      "pe": 11.427272,
+      "pe": 11.463635,
       "roe": 16.811999999999998,
       "ca_growth": 25.900000000000002,
       "bfr_pct": 3.409975818681094,
-      "price": 25.14,
-      "currency": "EUR"
+      "price": 25.22,
+      "currency": "EUR",
+      "sector": "Communication Services",
+      "flags": []
     },
     {
       "ticker": "INDU-C.ST",
       "nom": "Industrivärden, AB ser. C",
       "score": 95,
-      "statut": "FORT — initier position (3 tranches)",
-      "pe": 5.4670835,
+      "statut": "A VERIFIER — signal mais methode peu fiable ici (voir drapeaux)",
+      "pe": 5.484323,
       "roe": 21.636999000000003,
       "ca_growth": 59.3,
       "bfr_pct": null,
-      "price": 507.4,
-      "currency": "SEK"
+      "price": 509.0,
+      "currency": "SEK",
+      "sector": "Financial Services",
+      "flags": [
+        "HOLDING — PE/ROE/croissance fausses par la valeur des participations"
+      ]
     },
     {
       "ticker": "LHA.DE",
       "nom": "DEUTSCHE LUFTHANSA AG         V",
       "score": 95,
-      "statut": "FORT — initier position (3 tranches)",
-      "pe": 6.8923078,
+      "statut": "A VERIFIER — signal mais methode peu fiable ici (voir drapeaux)",
+      "pe": 6.8984623,
       "roe": 13.716999999999999,
       "ca_growth": 7.6,
       "bfr_pct": -0.825820137889234,
-      "price": 8.96,
-      "currency": "EUR"
+      "price": 8.968,
+      "currency": "EUR",
+      "sector": "Industrials",
+      "flags": [
+        "CYCLIQUE — benefice possiblement au pic, PE bas trompeur"
+      ]
     },
     {
       "ticker": "TMV.DE",
       "nom": "TeamViewer SE                 I",
       "score": 95,
       "statut": "FORT — initier position (3 tranches)",
-      "pe": 7.0064106,
+      "pe": 6.9871793,
       "roe": 76.628995,
       "ca_growth": 2.5,
       "bfr_pct": 2.205218714095563,
-      "price": 5.465,
-      "currency": "EUR"
+      "price": 5.45,
+      "currency": "EUR",
+      "sector": "Technology",
+      "flags": []
     },
     {
       "ticker": "A2A.MI",
       "nom": "A2A",
       "score": 90,
       "statut": "FORT — initier position (3 tranches)",
-      "pe": 9.308333,
+      "pe": 9.3125,
       "roe": 11.48,
       "ca_growth": 14.7,
       "bfr_pct": 2.5183783390348644,
-      "price": 2.234,
-      "currency": "EUR"
+      "price": 2.235,
+      "currency": "EUR",
+      "sector": "Utilities",
+      "flags": []
     },
     {
       "ticker": "INVE-B.ST",
       "nom": "Investor AB ser. B",
       "score": 90,
-      "statut": "FORT — initier position (3 tranches)",
-      "pe": 6.1826663,
+      "statut": "A VERIFIER — signal mais methode peu fiable ici (voir drapeaux)",
+      "pe": 6.202766,
       "roe": 21.205,
       "ca_growth": 357.3,
       "bfr_pct": null,
-      "price": 384.5,
-      "currency": "SEK"
+      "price": 385.75,
+      "currency": "SEK",
+      "sector": "Financial Services",
+      "flags": [
+        "HOLDING — PE/ROE/croissance fausses par la valeur des participations"
+      ]
     },
     {
       "ticker": "WKL.AS",
       "nom": "WOLTERS KLUWER",
       "score": 90,
       "statut": "FORT — initier position (3 tranches)",
-      "pe": 10.599291,
+      "pe": 10.634752,
       "roe": 111.652,
       "ca_growth": 1.6,
       "bfr_pct": 16.42448979591837,
-      "price": 59.78,
-      "currency": "EUR"
+      "price": 59.98,
+      "currency": "EUR",
+      "sector": "Industrials",
+      "flags": []
     },
     {
       "ticker": "AZM.MI",
       "nom": "AZIMUT",
       "score": 85,
-      "statut": "FORT — initier position (3 tranches)",
-      "pe": 10.179894,
+      "statut": "A VERIFIER — signal mais methode peu fiable ici (voir drapeaux)",
+      "pe": 10.148149,
       "roe": 26.435,
       "ca_growth": 12.7,
       "bfr_pct": 10.091162949331022,
-      "price": 38.48,
-      "currency": "EUR"
+      "price": 38.36,
+      "currency": "EUR",
+      "sector": "Financial Services",
+      "flags": [
+        "FINANCIERE — ratios PE/ROE/BFR non comparables (metier = taux)"
+      ]
     },
     {
       "ticker": "BMPS.MI",
       "nom": "BANCA MONTE PASCHI SIENA",
       "score": 85,
-      "statut": "FORT — initier position (3 tranches)",
-      "pe": 7.966667,
+      "statut": "A VERIFIER — signal mais methode peu fiable ici (voir drapeaux)",
+      "pe": 7.94058,
       "roe": 13.343,
       "ca_growth": 95.89999999999999,
       "bfr_pct": null,
-      "price": 10.994,
-      "currency": "EUR"
+      "price": 10.96,
+      "currency": "EUR",
+      "sector": "Financial Services",
+      "flags": [
+        "FINANCIERE — ratios PE/ROE/BFR non comparables (metier = taux)"
+      ]
     },
     {
       "ticker": "HEXA-B.ST",
       "nom": "Hexagon AB ser. B",
       "score": 85,
       "statut": "FORT — initier position (3 tranches)",
-      "pe": 9.929781,
+      "pe": 9.9588375,
       "roe": 17.889,
       "ca_growth": 0.2,
       "bfr_pct": 24.860819230911034,
-      "price": 82.02,
-      "currency": "SEK"
+      "price": 82.26,
+      "currency": "SEK",
+      "sector": "Technology",
+      "flags": []
     },
     {
       "ticker": "NDA.DE",
       "nom": "Aurubis AG                    I",
       "score": 85,
       "statut": "FORT — initier position (3 tranches)",
-      "pe": 9.862494,
+      "pe": 9.75818,
       "roe": 17.108,
       "ca_growth": 21.4,
       "bfr_pct": 15.628439357252915,
-      "price": 208.0,
-      "currency": "EUR"
+      "price": 205.8,
+      "currency": "EUR",
+      "sector": "Industrials",
+      "flags": []
     },
     {
       "ticker": "NOS.LS",
       "nom": "NOS, SGPS, SA",
       "score": 85,
-      "statut": "FORT — initier position (3 tranches)",
+      "statut": "A VERIFIER — signal mais methode peu fiable ici (voir drapeaux)",
       "pe": 10.760417,
       "roe": 21.304001,
       "ca_growth": 9.2,
       "bfr_pct": 8.811668957558352,
       "price": 5.165,
-      "currency": "EUR"
+      "currency": "EUR",
+      "sector": "Communication Services",
+      "flags": [
+        "HOLDING — PE/ROE/croissance fausses par la valeur des participations"
+      ]
     },
     {
       "ticker": "SBMO.AS",
       "nom": "SBM OFFSHORE",
       "score": 85,
-      "statut": "FORT — initier position (3 tranches)",
-      "pe": 7.147903,
+      "statut": "A VERIFIER — signal mais methode peu fiable ici (voir drapeaux)",
+      "pe": 7.2141275,
       "roe": 17.977999999999998,
       "ca_growth": 19.5,
       "bfr_pct": 7.84346942232763,
-      "price": 32.38,
-      "currency": "EUR"
+      "price": 32.68,
+      "currency": "EUR",
+      "sector": "Energy",
+      "flags": [
+        "CYCLIQUE — benefice possiblement au pic, PE bas trompeur"
+      ]
     },
     {
       "ticker": "FLOW.AS",
       "nom": "FLOW TRADERS",
       "score": 80,
-      "statut": "FORT — initier position (3 tranches)",
-      "pe": 8.61745,
+      "statut": "A VERIFIER — signal mais methode peu fiable ici (voir drapeaux)",
+      "pe": 8.630872,
       "roe": 18.063000000000002,
       "ca_growth": 16.7,
       "bfr_pct": null,
-      "price": 25.68,
-      "currency": "EUR"
+      "price": 25.72,
+      "currency": "EUR",
+      "sector": "Financial Services",
+      "flags": [
+        "FINANCIERE — ratios PE/ROE/BFR non comparables (metier = taux)"
+      ]
     },
     {
       "ticker": "IPS.PA",
       "nom": "IPSOS",
       "score": 80,
       "statut": "FORT — initier position (3 tranches)",
-      "pe": 9.002341,
+      "pe": 9.03513,
       "roe": 11.978,
       "ca_growth": 5.2,
       "bfr_pct": 8.719046989084704,
-      "price": 38.44,
-      "currency": "EUR"
+      "price": 38.58,
+      "currency": "EUR",
+      "sector": "Industrials",
+      "flags": []
     },
     {
       "ticker": "TRI.PA",
       "nom": "TRIGANO",
       "score": 75,
       "statut": "INTERESSANT — surveiller, attendre confirmation",
-      "pe": 10.726172,
+      "pe": 10.673223,
       "roe": 12.271,
       "ca_growth": 6.2,
       "bfr_pct": 20.042620621823946,
-      "price": 141.8,
-      "currency": "EUR"
+      "price": 141.1,
+      "currency": "EUR",
+      "sector": "Consumer Cyclical",
+      "flags": []
     },
     {
       "ticker": "BZU.MI",
       "nom": "BUZZI",
       "score": 70,
-      "statut": "INTERESSANT — surveiller, attendre confirmation",
-      "pe": 9.306483,
+      "statut": "A VERIFIER — signal mais methode peu fiable ici (voir drapeaux)",
+      "pe": 9.30059,
       "roe": 13.444999999999999,
       "ca_growth": 2.9000000000000004,
       "bfr_pct": 24.758214553090557,
-      "price": 47.37,
-      "currency": "EUR"
+      "price": 47.34,
+      "currency": "EUR",
+      "sector": "Basic Materials",
+      "flags": [
+        "CYCLIQUE — benefice possiblement au pic, PE bas trompeur"
+      ]
     },
     {
       "ticker": "BBVA.MC",
       "nom": "BANCO BILBAO VIZCAYA ARGENTARIA",
       "score": 65,
-      "statut": "INTERESSANT — surveiller, attendre confirmation",
-      "pe": 11.78022,
+      "statut": "A VERIFIER — signal mais methode peu fiable ici (voir drapeaux)",
+      "pe": 11.785714,
       "roe": 19.042999,
       "ca_growth": 11.899999999999999,
       "bfr_pct": null,
-      "price": 21.44,
-      "currency": "EUR"
+      "price": 21.45,
+      "currency": "EUR",
+      "sector": "Financial Services",
+      "flags": [
+        "FINANCIERE — ratios PE/ROE/BFR non comparables (metier = taux)"
+      ]
     },
     {
       "ticker": "ISP.MI",
       "nom": "INTESA SANPAOLO",
       "score": 65,
-      "statut": "INTERESSANT — surveiller, attendre confirmation",
-      "pe": 11.262962,
+      "statut": "A VERIFIER — signal mais methode peu fiable ici (voir drapeaux)",
+      "pe": 11.248147,
       "roe": 14.007,
       "ca_growth": 6.0,
       "bfr_pct": null,
-      "price": 6.082,
-      "currency": "EUR"
+      "price": 6.074,
+      "currency": "EUR",
+      "sector": "Financial Services",
+      "flags": [
+        "FINANCIERE — ratios PE/ROE/BFR non comparables (metier = taux)"
+      ]
     },
     {
       "ticker": "BAMI.MI",
       "nom": "BANCO BPM",
       "score": 60,
-      "statut": "INTERESSANT — surveiller, attendre confirmation",
-      "pe": 11.126811,
+      "statut": "A VERIFIER — signal mais methode peu fiable ici (voir drapeaux)",
+      "pe": 11.130435,
       "roe": 13.722000000000001,
       "ca_growth": 2.9000000000000004,
       "bfr_pct": null,
-      "price": 15.355,
-      "currency": "EUR"
+      "price": 15.36,
+      "currency": "EUR",
+      "sector": "Financial Services",
+      "flags": [
+        "FINANCIERE — ratios PE/ROE/BFR non comparables (metier = taux)"
+      ]
     },
     {
       "ticker": "UCG.MI",
       "nom": "UNICREDIT",
       "score": 60,
-      "statut": "INTERESSANT — surveiller, attendre confirmation",
-      "pe": 10.8459425,
+      "statut": "A VERIFIER — signal mais methode peu fiable ici (voir drapeaux)",
+      "pe": 10.819808,
       "roe": 16.983999999999998,
       "ca_growth": 6.4,
       "bfr_pct": null,
-      "price": 78.85,
-      "currency": "EUR"
+      "price": 78.66,
+      "currency": "EUR",
+      "sector": "Financial Services",
+      "flags": [
+        "FINANCIERE — ratios PE/ROE/BFR non comparables (metier = taux)"
+      ]
     }
   ]
 }
