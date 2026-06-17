@@ -12,6 +12,21 @@ _SESSION.verify = False
 _SESSION.headers.update({"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"})
 
 
+def _num(v):
+    """Convertit en float ou None. yfinance renvoie parfois des chaînes
+    ('Infinity', '', etc.) sur certains champs → on sécurise."""
+    if v is None:
+        return None
+    try:
+        f = float(v)
+    except (TypeError, ValueError):
+        return None
+    # NaN / inf ne sont pas exploitables
+    if f != f or f in (float("inf"), float("-inf")):
+        return None
+    return f
+
+
 def _safe(df, row, col=0):
     """Lit une valeur d'un DataFrame yfinance sans planter."""
     try:
@@ -34,16 +49,16 @@ def fetch_fundamentals(ticker: str) -> dict | None:
         cf   = t.cashflow
 
         name      = info.get("shortName") or ticker
-        price     = info.get("currentPrice") or info.get("regularMarketPrice")
+        price     = _num(info.get("currentPrice") or info.get("regularMarketPrice"))
         currency  = info.get("currency", "")
-        mkt_cap   = info.get("marketCap")
-        employees = info.get("fullTimeEmployees")
+        mkt_cap   = _num(info.get("marketCap"))
+        employees = _num(info.get("fullTimeEmployees"))
 
         # ── Critères principaux ──────────────────────────────────────────
-        pe         = info.get("trailingPE")
-        roe_raw    = info.get("returnOnEquity")
+        pe         = _num(info.get("trailingPE"))
+        roe_raw    = _num(info.get("returnOnEquity"))
         roe        = roe_raw * 100 if roe_raw is not None else None
-        rev_growth = info.get("revenueGrowth")
+        rev_growth = _num(info.get("revenueGrowth"))
         ca_growth  = rev_growth * 100 if rev_growth is not None else None
 
         # ── BFR / CA (calcul réel depuis bilan) ──────────────────────────

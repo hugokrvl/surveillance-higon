@@ -54,9 +54,29 @@ def scan_all():
 
     for ticker in tickers:
         print(f"\n  > {ticker}")
+        try:
+            _scan_ticker(ticker, signaux, held)
+        except Exception as e:
+            print(f"     [ERREUR ignoree] {ticker}: {e}")
+            continue
+
+    # ── Écriture signals.json (lu par le site local) ──────────────────────
+    signaux.sort(key=lambda s: s["score"], reverse=True)
+    payload = {"date": _now(), "nb": len(signaux), "signaux": signaux}
+    try:
+        with open(SIGNALS_FILE, "w", encoding="utf-8") as fp:
+            json.dump(payload, fp, ensure_ascii=False, indent=2)
+        print(f"\n[{_now()}] {len(signaux)} signal(aux) ecrit(s) dans signals.json")
+    except Exception as e:
+        print(f"\n[ERREUR] ecriture signals.json : {e}")
+
+    print(f"[{_now()}] Scan termine. Prochain scan demain a {SCAN_TIME}.\n")
+
+
+def _scan_ticker(ticker: str, signaux: list, held: set):
         data = fetch_fundamentals(ticker)
         if data is None:
-            continue
+            return
 
         result = higon_score(data)
         score  = result["score"]
@@ -111,18 +131,6 @@ def scan_all():
             if _last_warn_hash.get(ticker) != h:
                 notify_warning(data, warnings)
                 _last_warn_hash[ticker] = h
-
-    # ── Écriture signals.json (lu par le site local) ──────────────────────
-    signaux.sort(key=lambda s: s["score"], reverse=True)
-    payload = {"date": _now(), "nb": len(signaux), "signaux": signaux}
-    try:
-        with open(SIGNALS_FILE, "w", encoding="utf-8") as fp:
-            json.dump(payload, fp, ensure_ascii=False, indent=2)
-        print(f"\n[{_now()}] {len(signaux)} signal(aux) ecrit(s) dans signals.json")
-    except Exception as e:
-        print(f"\n[ERREUR] ecriture signals.json : {e}")
-
-    print(f"[{_now()}] Scan termine. Prochain scan demain a {SCAN_TIME}.\n")
 
 
 def _now() -> str:
