@@ -1,6 +1,6 @@
 {
   "points_depart": 1000.0,
-  "cash_points": 900.0,
+  "cash_points": 850.0,
   "positions": [
     {
       "id": 1,
@@ -21,8 +21,18 @@
       "parts": 22.371365,
       "date_entree": "2026-06-17",
       "score_entree": 90
+    },
+    {
+      "id": 3,
+      "ticker": "IPS.PA",
+      "nom": "IPSOS",
+      "prix_entree": 38.58,
+      "points_investis": 50.0,
+      "parts": 1.296008,
+      "date_entree": "2026-06-17",
+      "score_entree": 80
     }
   ],
   "historique": [],
-  "next_id": 3
+  "next_id": 4
 }
