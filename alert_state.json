@@ -1,4 +1,6 @@
 {
   "sell": {},
-  "warn": {}
+  "warn": {
+    "TRI.PA": "CAPEX en forte baisse : verifier si la societe redistribue plutot qu'elle n'investit"
+  }
 }

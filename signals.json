@@ -1,5 +1,5 @@
 {
-  "date": "18/06/2026 00:31",
+  "date": "18/06/2026 00:58",
   "nb": 23,
   "signaux": [
     {
@@ -260,20 +260,6 @@
       "flags": []
     },
     {
-      "ticker": "TRI.PA",
-      "nom": "TRIGANO",
-      "score": 75,
-      "statut": "INTERESSANT — surveiller, attendre confirmation",
-      "pe": 10.590014,
-      "roe": 12.271,
-      "ca_growth": 6.2,
-      "bfr_pct": 20.042620621823946,
-      "price": 140.0,
-      "currency": "EUR",
-      "sector": "Consumer Cyclical",
-      "flags": []
-    },
-    {
       "ticker": "BZU.MI",
       "nom": "BUZZI",
       "score": 70,
@@ -288,6 +274,20 @@
       "flags": [
         "CYCLIQUE — benefice possiblement au pic, PE bas trompeur"
       ]
+    },
+    {
+      "ticker": "TRI.PA",
+      "nom": "TRIGANO",
+      "score": 70,
+      "statut": "INTERESSANT — surveiller, attendre confirmation",
+      "pe": 10.590014,
+      "roe": 12.271,
+      "ca_growth": 6.2,
+      "bfr_pct": 20.042620621823946,
+      "price": 140.0,
+      "currency": "EUR",
+      "sector": "Consumer Cyclical",
+      "flags": []
     },
     {
       "ticker": "BBVA.MC",
