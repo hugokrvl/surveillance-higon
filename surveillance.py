@@ -5,14 +5,19 @@ Scan automatique toutes les heures en heures de bourse (9h-17h30 Paris, lun-ven)
 Notifs push via app ntfy (gratuit).
 """
 import sys
+import json
 import time
 import schedule
 import datetime
 import pytz
+from pathlib import Path
 
 from config import WATCHLIST, PORTEFEUILLE, SCAN_INTERVAL_MINUTES, SCAN_TIME, SCORE_NOTIF_MIN, NTFY_TOPIC
 from scorer import fetch_fundamentals, higon_score
 from notifier import notify_signal, notify_sell_alert, notify_warning, notify_test
+import portfolio
+
+SIGNALS_FILE = Path(__file__).parent / "signals.json"
 
 PARIS_TZ = pytz.timezone("Europe/Paris")
 
@@ -39,9 +44,12 @@ def _sell_level(pe: float) -> str | None:
 
 
 def scan_all():
-    tickers = sorted(set(WATCHLIST) | set(PORTEFEUILLE))
+    # Positions réellement détenues (depuis portfolio.json) + liste config optionnelle
+    held = portfolio.held_tickers() | set(PORTEFEUILLE)
+    tickers = sorted(set(WATCHLIST) | held)
+    signaux = []   # signaux d'achat -> signals.json (lu par le site local)
     print(f"\n{'='*65}")
-    print(f"[{_now()}] SCAN — {len(tickers)} actions ({len(PORTEFEUILLE)} en portefeuille)")
+    print(f"[{_now()}] SCAN — {len(tickers)} actions ({len(held)} detenues)")
     print(f"{'='*65}")
 
     for ticker in tickers:
@@ -66,8 +74,20 @@ def scan_all():
         for a in result.get("alerts", []):
             print(f"     [VENTE] {a}")
 
-        # ── Notif signal achat ────────────────────────────────────────────
+        # ── Notif signal achat + enregistrement dans signals.json ─────────
         if elig and score >= SCORE_NOTIF_MIN:
+            signaux.append({
+                "ticker":    ticker,
+                "nom":       data.get("name"),
+                "score":     score,
+                "statut":    statut,
+                "pe":        data.get("pe"),
+                "roe":       data.get("roe"),
+                "ca_growth": data.get("ca_growth"),
+                "bfr_pct":   data.get("bfr_pct"),
+                "price":     data.get("price"),
+                "currency":  data.get("currency"),
+            })
             if _last_signal.get(ticker) != statut:
                 notify_signal(data, result)
                 _last_signal[ticker] = statut
@@ -75,8 +95,8 @@ def scan_all():
             del _last_signal[ticker]   # reset si l'action n'est plus eligible
 
         # ── Notif alertes vente (3 paliers : 15 / 17 / 20) ──────────────
-        # Uniquement pour les actions DÉTENUES (portefeuille), sinon spam.
-        if pe is not None and ticker in PORTEFEUILLE:
+        # Uniquement pour les actions DÉTENUES, sinon spam.
+        if pe is not None and ticker in held:
             lvl = _sell_level(pe)
             if lvl and _last_sell_lvl.get(ticker) != lvl:
                 notify_sell_alert(data, pe)
@@ -92,7 +112,17 @@ def scan_all():
                 notify_warning(data, warnings)
                 _last_warn_hash[ticker] = h
 
-    print(f"\n[{_now()}] Scan termine. Prochain scan demain a {SCAN_TIME}.\n")
+    # ── Écriture signals.json (lu par le site local) ──────────────────────
+    signaux.sort(key=lambda s: s["score"], reverse=True)
+    payload = {"date": _now(), "nb": len(signaux), "signaux": signaux}
+    try:
+        with open(SIGNALS_FILE, "w", encoding="utf-8") as fp:
+            json.dump(payload, fp, ensure_ascii=False, indent=2)
+        print(f"\n[{_now()}] {len(signaux)} signal(aux) ecrit(s) dans signals.json")
+    except Exception as e:
+        print(f"\n[ERREUR] ecriture signals.json : {e}")
+
+    print(f"[{_now()}] Scan termine. Prochain scan demain a {SCAN_TIME}.\n")
 
 
 def _now() -> str:

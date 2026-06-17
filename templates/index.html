@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portefeuille Higon — Points</title>
+<style>
+  :root{
+    --bg:#0f1419; --card:#1a2230; --line:#2a3548; --txt:#e6edf3;
+    --muted:#8b98a9; --green:#2ea043; --red:#e5534b; --accent:#388bfd; --gold:#d4a017;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:system-ui,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--txt);padding:18px;max-width:1100px;margin:auto}
+  h1{font-size:20px;margin:0 0 4px} h2{font-size:15px;margin:22px 0 10px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+  .sub{color:var(--muted);font-size:13px;margin-bottom:18px}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px}
+  .card .lbl{color:var(--muted);font-size:12px} .card .val{font-size:22px;font-weight:600;margin-top:4px}
+  table{width:100%;border-collapse:collapse;background:var(--card);border-radius:10px;overflow:hidden;font-size:14px}
+  th,td{padding:9px 11px;text-align:right;border-bottom:1px solid var(--line)}
+  th:first-child,td:first-child{text-align:left}
+  th{color:var(--muted);font-weight:500;font-size:12px;text-transform:uppercase}
+  tr:last-child td{border-bottom:none}
+  .pos{color:var(--green)} .neg{color:var(--red)}
+  .badge{display:inline-block;padding:2px 7px;border-radius:6px;font-size:11px;font-weight:600;background:#16261a;color:var(--green)}
+  .badge.warn{background:#2a2410;color:var(--gold)}
+  input,button,select{font:inherit;border-radius:7px;border:1px solid var(--line);background:#0e141d;color:var(--txt);padding:7px 9px}
+  button{cursor:pointer;background:var(--accent);border:none;color:#fff;font-weight:600}
+  button.ghost{background:transparent;border:1px solid var(--line);color:var(--muted)}
+  button.sell{background:var(--red)}
+  form.inline{display:flex;gap:6px;align-items:center;justify-content:flex-end;flex-wrap:wrap}
+  .flash{padding:10px 14px;border-radius:8px;margin-bottom:12px;font-size:14px}
+  .flash.ok{background:#102a16;border:1px solid var(--green)}
+  .flash.warn{background:#2a2410;border:1px solid var(--gold)}
+  .flash.error{background:#2a1414;border:1px solid var(--red)}
+  .topbar{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}
+  details{margin-top:6px} summary{cursor:pointer;color:var(--accent);font-size:13px}
+  .mini{font-size:12px;color:var(--muted)}
+  .row-form{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px;align-items:end;margin-top:8px}
+  label{font-size:12px;color:var(--muted);display:block;margin-bottom:3px}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div>
+    <h1>Portefeuille Higon — simulation en points</h1>
+    <div class="sub">Paper trading · données réelles Yahoo Finance · départ {{ '%.0f'|format(d.points_depart) }} pts
+      {% if signals.date %} · signaux du {{ signals.date }}{% endif %}</div>
+  </div>
+  <form method="post" action="{{ url_for('sync') }}"><button class="ghost">⟳ Synchroniser GitHub</button></form>
+</div>
+
+{% with msgs = get_flashed_messages(with_categories=true) %}
+  {% for cat,m in msgs %}<div class="flash {{cat}}">{{ m }}</div>{% endfor %}
+{% endwith %}
+
+<div class="cards">
+  <div class="card"><div class="lbl">Valeur totale</div><div class="val">{{ '%.1f'|format(d.valeur_totale) }}</div></div>
+  <div class="card"><div class="lbl">Rendement</div>
+    <div class="val {{ 'pos' if d.rendement_pct>=0 else 'neg' }}">{{ '%+.2f'|format(d.rendement_pct) }}%</div></div>
+  <div class="card"><div class="lbl">Cash dispo</div><div class="val">{{ '%.1f'|format(d.cash_points) }}</div></div>
+  <div class="card"><div class="lbl">En positions</div><div class="val">{{ '%.1f'|format(d.valeur_positions) }}</div></div>
+  <div class="card"><div class="lbl">PV réalisée</div>
+    <div class="val {{ 'pos' if d.pv_realisee_pts>=0 else 'neg' }}">{{ '%+.1f'|format(d.pv_realisee_pts) }}</div></div>
+</div>
+
+<!-- ───────────── POSITIONS OUVERTES ───────────── -->
+<h2>Positions ouvertes ({{ d.nb_positions }})</h2>
+{% if d.positions %}
+<table>
+  <tr><th>Action</th><th>Entrée</th><th>Cours</th><th>Pts investis</th><th>Valeur</th><th>+/- value</th><th>Clôturer</th></tr>
+  {% for p in d.positions %}
+  <tr>
+    <td><b>{{ p.ticker }}</b><br><span class="mini">{{ p.nom }}</span></td>
+    <td>{{ p.prix_entree }}<br><span class="mini">{{ p.date_entree }}</span></td>
+    <td>{{ p.cours_actuel if p.cours_actuel else 'N/D' }}</td>
+    <td>{{ '%.1f'|format(p.points_investis) }}</td>
+    <td>{{ '%.1f'|format(p.valeur_pts) if p.valeur_pts is not none else 'N/D' }}</td>
+    <td class="{{ 'pos' if (p.plus_value_pts or 0)>=0 else 'neg' }}">
+      {% if p.plus_value_pts is not none %}{{ '%+.1f'|format(p.plus_value_pts) }} pts<br>
+      <span class="mini {{ 'pos' if p.plus_value_pct>=0 else 'neg' }}">{{ '%+.1f'|format(p.plus_value_pct) }}%</span>{% else %}N/D{% endif %}
+    </td>
+    <td>
+      <form class="inline" method="post" action="{{ url_for('fermer') }}">
+        <input type="hidden" name="pos_id" value="{{ p.id }}">
+        <input type="number" step="any" name="prix_sortie" value="{{ p.cours_actuel or p.prix_entree }}" style="width:80px">
+        <button class="sell">Vendre</button>
+      </form>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}<p class="mini">Aucune position ouverte. Ouvre-en une depuis un signal ci-dessous, ou manuellement.</p>{% endif %}
+
+<!-- ───────────── SIGNAUX D'ACHAT ───────────── -->
+<h2>Signaux d'achat Higon ({{ signals.signaux|length }})</h2>
+{% if signals.signaux %}
+<table>
+  <tr><th>Action</th><th>Score</th><th>PE</th><th>ROE</th><th>CA</th><th>Prix</th><th>Prendre position</th></tr>
+  {% for s in signals.signaux %}
+  <tr>
+    <td><b>{{ s.ticker }}</b> {% if s.ticker in held %}<span class="badge">détenue</span>{% endif %}<br>
+        <span class="mini">{{ s.nom }}</span></td>
+    <td><span class="badge {{ '' if s.score>=80 else 'warn' }}">{{ s.score }}/100</span></td>
+    <td>{{ '%.1f'|format(s.pe) if s.pe else 'N/D' }}x</td>
+    <td>{{ '%.1f'|format(s.roe) if s.roe else 'N/D' }}%</td>
+    <td>{{ '%+.1f'|format(s.ca_growth) if s.ca_growth is not none else 'N/D' }}%</td>
+    <td>{{ s.price if s.price else 'N/D' }} {{ s.currency or '' }}</td>
+    <td>
+      <form class="inline" method="post" action="{{ url_for('ouvrir') }}">
+        <input type="hidden" name="ticker" value="{{ s.ticker }}">
+        <input type="hidden" name="nom" value="{{ s.nom }}">
+        <input type="hidden" name="score" value="{{ s.score }}">
+        <input type="number" step="any" name="prix_entree" value="{{ s.price or '' }}" placeholder="prix" style="width:80px" required title="cours d'entrée (modifiable)">
+        <input type="number" step="any" name="points" placeholder="points" style="width:75px" required>
+        <button>Acheter</button>
+      </form>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<p class="mini">Aucun signal pour l'instant. Le scan GitHub tourne à 18h (lun-ven) et remplit cette liste.</p>
+{% endif %}
+
+<!-- ───────────── ACHAT MANUEL ───────────── -->
+<details>
+  <summary>+ Ouvrir une position manuellement (ticker libre)</summary>
+  <form class="row-form" method="post" action="{{ url_for('ouvrir') }}">
+    <div><label>Ticker</label><input name="ticker" id="m_ticker" placeholder="MRN.PA" required></div>
+    <div><label>Nom</label><input name="nom" placeholder="Mersen"></div>
+    <div><label>Prix d'entrée</label><input type="number" step="any" name="prix_entree" id="m_prix" required></div>
+    <div><label>Points</label><input type="number" step="any" name="points" required></div>
+    <div><button type="button" class="ghost" onclick="getPrix()">Récupérer cours</button></div>
+    <div><button>Ouvrir</button></div>
+  </form>
+  <div class="mini" id="m_msg"></div>
+</details>
+
+<!-- ───────────── HISTORIQUE ───────────── -->
+{% if d.historique %}
+<h2>Historique ({{ d.historique|length }})</h2>
+<table>
+  <tr><th>Action</th><th>Entrée → Sortie</th><th>Pts inv.</th><th>Pts récup.</th><th>+/- value</th><th>Raison</th></tr>
+  {% for t in d.historique %}
+  <tr>
+    <td><b>{{ t.ticker }}</b><br><span class="mini">{{ t.date_entree }} → {{ t.date_sortie }}</span></td>
+    <td>{{ t.prix_entree }} → {{ t.prix_sortie }}</td>
+    <td>{{ '%.1f'|format(t.points_investis) }}</td>
+    <td>{{ '%.1f'|format(t.points_recuperes) }}</td>
+    <td class="{{ 'pos' if t.plus_value_pts>=0 else 'neg' }}">{{ '%+.1f'|format(t.plus_value_pts) }} pts ({{ '%+.1f'|format(t.plus_value_pct) }}%)</td>
+    <td class="mini">{{ t.raison_sortie }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endif %}
+
+<script>
+function getPrix(){
+  const t = document.getElementById('m_ticker').value.trim().toUpperCase();
+  if(!t){return}
+  document.getElementById('m_msg').textContent = 'Récupération...';
+  fetch('/prix/'+encodeURIComponent(t)).then(r=>r.json()).then(j=>{
+    if(j.prix){ document.getElementById('m_prix').value = j.prix;
+      document.getElementById('m_msg').textContent = 'Cours actuel : '+j.prix; }
+    else { document.getElementById('m_msg').textContent = 'Cours indisponible — saisis-le manuellement.'; }
+  }).catch(()=>{document.getElementById('m_msg').textContent='Erreur réseau.'});
+}
+</script>
+</body>
+</html>

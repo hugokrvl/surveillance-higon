@@ -11,6 +11,9 @@ on:
   # Permet aussi de lancer manuellement depuis l'interface GitHub
   workflow_dispatch:
 
+permissions:
+  contents: write   # autorise le commit de signals.json
+
 jobs:
   scan:
     name: Scan marche Higon
@@ -33,3 +36,16 @@ jobs:
         env:
           PYTHONIOENCODING: utf-8
         run: python surveillance.py --scan
+
+      - name: Commit des signaux du jour
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add signals.json
+          if git diff --cached --quiet; then
+            echo "Aucun changement de signaux."
+          else
+            git commit -m "Signaux Higon du jour (scan automatique)"
+            git pull --rebase --autostash
+            git push
+          fi
