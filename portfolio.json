@@ -1,6 +1,6 @@
 {
   "points_depart": 1000.0,
-  "cash_points": 800.0,
+  "cash_points": 750.0,
   "positions": [
     {
       "id": 1,
@@ -41,8 +41,18 @@
       "parts": 0.354359,
       "date_entree": "2026-06-17",
       "score_entree": 75
+    },
+    {
+      "id": 5,
+      "ticker": "HEXA-B.ST",
+      "nom": "Hexagon AB ser. B",
+      "prix_entree": 82.26,
+      "points_investis": 50.0,
+      "parts": 0.607829,
+      "date_entree": "2026-06-17",
+      "score_entree": 85
     }
   ],
   "historique": [],
-  "next_id": 5
+  "next_id": 6
 }
