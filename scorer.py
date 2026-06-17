@@ -158,8 +158,10 @@ def classify_traps(data: dict) -> list[str]:
     is_financial = ("financial" in sector) or any(
         k in industry for k in ("bank", "insurance", "capital markets", "asset management")
     )
+    # NB : "SGPS" est une forme juridique portugaise courante (≈ "SA"),
+    # pas un signe de holding -> on ne l'utilise pas comme critère.
     is_holding = any(k in name for k in (
-        "HOLDING", "INVESTOR", "INDUSTRIV", "SGPS", "INVEST AB", "PROSUS",
+        "HOLDING", "INVESTOR ", "INDUSTRIV", "INVEST AB", "PROSUS",
         "EXOR", "GROUPE BRUXELLES", "WENDEL", "EURAZEO",
     ))
 
