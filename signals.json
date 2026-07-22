@@ -1,6 +1,6 @@
 {
-  "date": "22/07/2026 19:21",
-  "nb": 25,
+  "date": "22/07/2026 20:11",
+  "nb": 26,
   "signaux": [
     {
       "ticker": "AF.PA",
@@ -108,6 +108,22 @@
       "flags": []
     },
     {
+      "ticker": "BOL.ST",
+      "nom": "Boliden AB",
+      "score": 90,
+      "statut": "A VERIFIER — signal mais methode peu fiable ici (voir drapeaux)",
+      "pe": 11.097942,
+      "roe": 16.781999,
+      "ca_growth": 15.5,
+      "bfr_pct": 16.537445593472285,
+      "price": 496.3,
+      "currency": "SEK",
+      "sector": "Basic Materials",
+      "flags": [
+        "CYCLIQUE — benefice possiblement au pic, PE bas trompeur"
+      ]
+    },
+    {
       "ticker": "INVE-B.ST",
       "nom": "Investor AB ser. B",
       "score": 90,
@@ -172,7 +188,7 @@
       "nom": "Hexagon AB ser. B",
       "score": 85,
       "statut": "FORT — initier position (3 tranches)",
-      "pe": 9.491686,
+      "pe": 9.536992,
       "roe": 17.889,
       "ca_growth": 0.2,
       "bfr_pct": 24.860819230911034,
