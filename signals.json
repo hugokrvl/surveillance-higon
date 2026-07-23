@@ -1,5 +1,5 @@
 {
-  "date": "23/07/2026 19:25",
+  "date": "23/07/2026 20:16",
   "nb": 26,
   "signaux": [
     {
@@ -52,7 +52,7 @@
       "nom": "Industrivärden, AB ser. C",
       "score": 95,
       "statut": "A VERIFIER — signal mais methode peu fiable ici (voir drapeaux)",
-      "pe": 3.590272,
+      "pe": 3.5907655,
       "roe": 32.275,
       "ca_growth": 1197.8999999999999,
       "bfr_pct": null,
@@ -302,20 +302,6 @@
       ]
     },
     {
-      "ticker": "TRI.PA",
-      "nom": "TRIGANO",
-      "score": 75,
-      "statut": "INTERESSANT — surveiller, attendre confirmation",
-      "pe": 10.968229,
-      "roe": 12.271,
-      "ca_growth": 6.2,
-      "bfr_pct": 20.042620621823946,
-      "price": 145.0,
-      "currency": "EUR",
-      "sector": "Consumer Cyclical",
-      "flags": []
-    },
-    {
       "ticker": "BZU.MI",
       "nom": "BUZZI",
       "score": 70,
@@ -343,6 +329,20 @@
       "price": 31.2,
       "currency": "EUR",
       "sector": "Industrials",
+      "flags": []
+    },
+    {
+      "ticker": "TRI.PA",
+      "nom": "TRIGANO",
+      "score": 70,
+      "statut": "INTERESSANT — surveiller, attendre confirmation",
+      "pe": 10.968229,
+      "roe": 12.271,
+      "ca_growth": 6.2,
+      "bfr_pct": 20.042620621823946,
+      "price": 145.0,
+      "currency": "EUR",
+      "sector": "Consumer Cyclical",
       "flags": []
     },
     {
