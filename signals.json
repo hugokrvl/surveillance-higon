@@ -1,5 +1,5 @@
 {
-  "date": "24/07/2026 19:33",
+  "date": "24/07/2026 20:22",
   "nb": 26,
   "signaux": [
     {
@@ -318,20 +318,6 @@
       ]
     },
     {
-      "ticker": "TRI.PA",
-      "nom": "TRIGANO",
-      "score": 75,
-      "statut": "INTERESSANT — surveiller, attendre confirmation",
-      "pe": 11.149773,
-      "roe": 12.271,
-      "ca_growth": 6.2,
-      "bfr_pct": 20.042620621823946,
-      "price": 147.4,
-      "currency": "EUR",
-      "sector": "Consumer Cyclical",
-      "flags": []
-    },
-    {
       "ticker": "GLO.PA",
       "nom": "GL EVENTS",
       "score": 70,
@@ -343,6 +329,20 @@
       "price": 31.4,
       "currency": "EUR",
       "sector": "Industrials",
+      "flags": []
+    },
+    {
+      "ticker": "TRI.PA",
+      "nom": "TRIGANO",
+      "score": 70,
+      "statut": "INTERESSANT — surveiller, attendre confirmation",
+      "pe": 11.149773,
+      "roe": 12.271,
+      "ca_growth": 6.2,
+      "bfr_pct": 20.042620621823946,
+      "price": 147.4,
+      "currency": "EUR",
+      "sector": "Consumer Cyclical",
       "flags": []
     },
     {
