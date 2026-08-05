@@ -1,6 +1,6 @@
 {
-  "date": "05/08/2026 19:30",
-  "nb": 27,
+  "date": "05/08/2026 20:24",
+  "nb": 26,
   "signaux": [
     {
       "ticker": "AF.PA",
@@ -61,22 +61,6 @@
       "sector": "Financial Services",
       "flags": [
         "HOLDING — PE/ROE/croissance fausses par la valeur des participations"
-      ]
-    },
-    {
-      "ticker": "LHA.DE",
-      "nom": "DEUTSCHE LUFTHANSA AG         V",
-      "score": 95,
-      "statut": "A VERIFIER — signal mais methode peu fiable ici (voir drapeaux)",
-      "pe": 6.6738462,
-      "roe": 13.716999999999999,
-      "ca_growth": 7.6,
-      "bfr_pct": -0.825820137889234,
-      "price": 8.676,
-      "currency": "EUR",
-      "sector": "Industrials",
-      "flags": [
-        "CYCLIQUE — benefice possiblement au pic, PE bas trompeur"
       ]
     },
     {
