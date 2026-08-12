@@ -1,5 +1,5 @@
 {
-  "date": "12/08/2026 18:58",
+  "date": "12/08/2026 20:01",
   "nb": 26,
   "signaux": [
     {
@@ -338,7 +338,7 @@
       "nom": "SOPRA STERIA GROUP",
       "score": 75,
       "statut": "INTERESSANT — surveiller, attendre confirmation",
-      "pe": 11.776062,
+      "pe": 11.783645,
       "roe": 14.576,
       "ca_growth": 4.1000000000000005,
       "bfr_pct": 7.928470254957507,
