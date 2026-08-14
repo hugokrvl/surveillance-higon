@@ -1,5 +1,5 @@
 {
-  "date": "14/08/2026 18:52",
+  "date": "14/08/2026 19:55",
   "nb": 28,
   "signaux": [
     {
@@ -38,7 +38,7 @@
       "nom": "EIFFAGE",
       "score": 95,
       "statut": "FORT — initier position (3 tranches)",
-      "pe": 11.300282,
+      "pe": 11.289721,
       "roe": 17.296,
       "ca_growth": 9.6,
       "bfr_pct": 9.493380270911457,
@@ -202,7 +202,7 @@
       "nom": "Tele2 AB ser. B",
       "score": 90,
       "statut": "FORT — initier position (3 tranches)",
-      "pe": 11.388122,
+      "pe": 11.380262,
       "roe": 47.615,
       "ca_growth": 1.9,
       "bfr_pct": 2.3419987286292616,
