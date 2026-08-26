@@ -1,5 +1,5 @@
 {
-  "date": "26/08/2026 18:50",
+  "date": "26/08/2026 21:02",
   "nb": 30,
   "signaux": [
     {
@@ -126,7 +126,7 @@
       "nom": "Investor AB ser. B",
       "score": 90,
       "statut": "A VERIFIER — signal mais methode peu fiable ici (voir drapeaux)",
-      "pe": 4.838992,
+      "pe": 4.8401213,
       "roe": 27.254,
       "ca_growth": 117.0,
       "bfr_pct": null,
