@@ -1,5 +1,5 @@
 {
-  "date": "29/08/2026 02:26",
+  "date": "29/08/2026 02:55",
   "nb": 31,
   "signaux": [
     {
@@ -55,8 +55,8 @@
       "score": 95,
       "statut": "FORT — initier position (3 tranches)",
       "pe": 10.2523365,
-      "roe": 17.677,
-      "ca_growth": 1.0999999999999999,
+      "roe": 17.296,
+      "ca_growth": 9.6,
       "bfr_pct": 9.493380270911457,
       "price": 109.7,
       "currency": "EUR",
