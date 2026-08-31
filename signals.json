@@ -1,5 +1,5 @@
 {
-  "date": "31/08/2026 23:21",
+  "date": "31/08/2026 23:47",
   "nb": 31,
   "signaux": [
     {
@@ -156,7 +156,7 @@
       "nom": "LEG Immobilien SE             N",
       "score": 90,
       "statut": "FORT — initier position (3 tranches)",
-      "pe": 3.2721224,
+      "pe": 3.2764823,
       "roe": 15.584999999999999,
       "ca_growth": 1.2,
       "bfr_pct": null,
@@ -274,7 +274,7 @@
       "nom": "VOPAK",
       "score": 85,
       "statut": "A VERIFIER — signal mais methode peu fiable ici (voir drapeaux)",
-      "pe": 11.846913,
+      "pe": 11.645631,
       "roe": 15.437999999999999,
       "ca_growth": 6.6000000000000005,
       "bfr_pct": 3.348987604896451,
@@ -350,7 +350,7 @@
       "nom": "FLOW TRADERS",
       "score": 75,
       "statut": "A VERIFIER — signal mais methode peu fiable ici (voir drapeaux)",
-      "pe": 9.76,
+      "pe": 9.891892,
       "roe": 15.318999999999999,
       "ca_growth": 6.7,
       "bfr_pct": null,
@@ -442,7 +442,7 @@
       "nom": "GL EVENTS",
       "score": 70,
       "statut": "INTERESSANT — surveiller, attendre confirmation",
-      "pe": 10.649819,
+      "pe": 10.49822,
       "roe": 14.95,
       "ca_growth": 8.9,
       "bfr_pct": -3.5370039002977647,
