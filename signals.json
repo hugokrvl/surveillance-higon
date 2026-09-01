@@ -1,5 +1,5 @@
 {
-  "date": "01/09/2026 21:15",
+  "date": "01/09/2026 21:48",
   "nb": 32,
   "signaux": [
     {
@@ -98,7 +98,7 @@
       "nom": "Aurubis AG                    I",
       "score": 95,
       "statut": "FORT — initier position (3 tranches)",
-      "pe": 7.5503945,
+      "pe": 7.5537047,
       "roe": 18.274,
       "ca_growth": 40.300000000000004,
       "bfr_pct": 15.628439357252915,
@@ -246,7 +246,7 @@
       "nom": "Hexagon AB ser. B",
       "score": 85,
       "statut": "FORT — initier position (3 tranches)",
-      "pe": 11.210946,
+      "pe": 11.249428,
       "roe": 27.291999999999998,
       "ca_growth": 4.0,
       "bfr_pct": 24.860819230911034,
@@ -396,7 +396,7 @@
       "nom": "TRIGANO",
       "score": 75,
       "statut": "INTERESSANT — surveiller, attendre confirmation",
-      "pe": 11.739788,
+      "pe": 11.748675,
       "roe": 12.271,
       "ca_growth": 6.2,
       "bfr_pct": 20.042620621823946,
@@ -442,7 +442,7 @@
       "nom": "GL EVENTS",
       "score": 70,
       "statut": "INTERESSANT — surveiller, attendre confirmation",
-      "pe": 10.212766,
+      "pe": 10.24911,
       "roe": 14.95,
       "ca_growth": 8.9,
       "bfr_pct": -3.5370039002977647,
