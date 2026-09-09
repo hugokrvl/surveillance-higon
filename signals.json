@@ -1,6 +1,6 @@
 {
-  "date": "09/09/2026 21:08",
-  "nb": 31,
+  "date": "09/09/2026 21:39",
+  "nb": 32,
   "signaux": [
     {
       "ticker": "AF.PA",
@@ -345,6 +345,22 @@
       "sector": "Energy",
       "flags": [
         "CYCLIQUE — benefice possiblement au pic, PE bas trompeur"
+      ]
+    },
+    {
+      "ticker": "FLOW.AS",
+      "nom": "FLOW TRADERS",
+      "score": 75,
+      "statut": "A VERIFIER — signal mais methode peu fiable ici (voir drapeaux)",
+      "pe": 9.506667,
+      "roe": 15.318999999999999,
+      "ca_growth": 6.7,
+      "bfr_pct": null,
+      "price": 28.52,
+      "currency": "EUR",
+      "sector": "Financial Services",
+      "flags": [
+        "FINANCIERE — ratios PE/ROE/BFR non comparables (metier = taux)"
       ]
     },
     {
