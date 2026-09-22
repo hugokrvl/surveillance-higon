@@ -1,5 +1,5 @@
 {
-  "date": "22/09/2026 21:38",
+  "date": "22/09/2026 22:04",
   "nb": 32,
   "signaux": [
     {
@@ -214,7 +214,7 @@
       "nom": "Tele2 AB ser. B",
       "score": 90,
       "statut": "FORT — initier position (3 tranches)",
-      "pe": 11.52069,
+      "pe": 11.528641,
       "roe": 47.615,
       "ca_growth": 1.9,
       "bfr_pct": 2.3419987286292616,
