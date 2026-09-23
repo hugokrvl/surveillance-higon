@@ -1,6 +1,6 @@
 {
-  "date": "23/09/2026 21:30",
-  "nb": 34,
+  "date": "23/09/2026 22:02",
+  "nb": 35,
   "signaux": [
     {
       "ticker": "AF.PA",
@@ -238,6 +238,22 @@
       "currency": "SEK",
       "sector": "Communication Services",
       "flags": []
+    },
+    {
+      "ticker": "AZM.MI",
+      "nom": "AZIMUT",
+      "score": 85,
+      "statut": "A VERIFIER — signal mais methode peu fiable ici (voir drapeaux)",
+      "pe": 10.580646,
+      "roe": 29.348000000000003,
+      "ca_growth": 17.0,
+      "bfr_pct": 10.091162949331022,
+      "price": 39.36,
+      "currency": "EUR",
+      "sector": "Financial Services",
+      "flags": [
+        "FINANCIERE — ratios PE/ROE/BFR non comparables (metier = taux)"
+      ]
     },
     {
       "ticker": "BMPS.MI",
