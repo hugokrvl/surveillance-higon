@@ -1,5 +1,5 @@
 {
-  "date": "30/09/2026 22:34",
+  "date": "30/09/2026 23:15",
   "nb": 37,
   "signaux": [
     {
@@ -244,7 +244,7 @@
       "nom": "Tele2 AB ser. B",
       "score": 90,
       "statut": "FORT — initier position (3 tranches)",
-      "pe": 11.203448,
+      "pe": 11.21118,
       "roe": 47.615,
       "ca_growth": 1.9,
       "bfr_pct": 2.3419987286292616,
@@ -290,7 +290,7 @@
       "nom": "BANCA MONTE PASCHI SIENA",
       "score": 85,
       "statut": "A VERIFIER — signal mais methode peu fiable ici (voir drapeaux)",
-      "pe": 9.793333,
+      "pe": 9.875629,
       "roe": 15.021999999999998,
       "ca_growth": 99.5,
       "bfr_pct": null,
