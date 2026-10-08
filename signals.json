@@ -1,6 +1,6 @@
 {
-  "date": "08/10/2026 23:05",
-  "nb": 37,
+  "date": "08/10/2026 23:53",
+  "nb": 35,
   "signaux": [
     {
       "ticker": "AENA.MC",
@@ -32,20 +32,6 @@
         "CYCLIQUE — benefice possiblement au pic, PE bas trompeur",
         "PIC POSSIBLE — PE tres bas + ROE tres haut, verifier la recurrence"
       ]
-    },
-    {
-      "ticker": "BC.MI",
-      "nom": "BRUNELLO CUCINELLI",
-      "score": 100,
-      "statut": "FORT — initier position (3 tranches)",
-      "pe": 0.00071553054,
-      "roe": 26.790999999999997,
-      "ca_growth": 9.5,
-      "bfr_pct": 22.930911658147192,
-      "price": 80.1,
-      "currency": "EUR",
-      "sector": "Consumer Cyclical",
-      "flags": []
     },
     {
       "ticker": "IAG.MC",
@@ -104,22 +90,6 @@
       "currency": "EUR",
       "sector": "Communication Services",
       "flags": []
-    },
-    {
-      "ticker": "INDU-C.ST",
-      "nom": "Industrivärden, AB ser. C",
-      "score": 95,
-      "statut": "A VERIFIER — signal mais methode peu fiable ici (voir drapeaux)",
-      "pe": 3.9756038,
-      "roe": 32.275,
-      "ca_growth": 1197.8999999999999,
-      "bfr_pct": null,
-      "price": 495.4,
-      "currency": "SEK",
-      "sector": "Financial Services",
-      "flags": [
-        "HOLDING — PE/ROE/croissance fausses par la valeur des participations"
-      ]
     },
     {
       "ticker": "NDA.DE",
