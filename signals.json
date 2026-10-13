@@ -1,5 +1,5 @@
 {
-  "date": "13/10/2026 23:02",
+  "date": "13/10/2026 23:47",
   "nb": 32,
   "signaux": [
     {
@@ -21,7 +21,7 @@
       "nom": "AIR FRANCE -KLM",
       "score": 100,
       "statut": "A VERIFIER — signal mais methode peu fiable ici (voir drapeaux)",
-      "pe": 2.7084398,
+      "pe": 2.7153845,
       "roe": 63.086,
       "ca_growth": 9.9,
       "bfr_pct": 1.4693852819098978,
