@@ -1,6 +1,6 @@
 {
-  "date": "28/10/2026 21:50",
-  "nb": 35,
+  "date": "28/10/2026 22:33",
+  "nb": 36,
   "signaux": [
     {
       "ticker": "AENA.MC",
@@ -21,7 +21,7 @@
       "nom": "AIR FRANCE -KLM",
       "score": 100,
       "statut": "A VERIFIER — signal mais methode peu fiable ici (voir drapeaux)",
-      "pe": 2.6645079,
+      "pe": 2.6371794,
       "roe": 63.086,
       "ca_growth": 9.9,
       "bfr_pct": 1.4693852819098978,
@@ -68,7 +68,7 @@
       "nom": "WITBE",
       "score": 95,
       "statut": "FORT — initier position (3 tranches)",
-      "pe": 6.0416665,
+      "pe": 6.1267605,
       "roe": 60.01,
       "ca_growth": 33.6,
       "bfr_pct": 9.884434444671712,
@@ -276,7 +276,7 @@
       "nom": "BANCA MONTE PASCHI SIENA",
       "score": 85,
       "statut": "A VERIFIER — signal mais methode peu fiable ici (voir drapeaux)",
-      "pe": 9.216949,
+      "pe": 9.139496,
       "roe": 15.021999999999998,
       "ca_growth": 99.5,
       "bfr_pct": null,
@@ -332,6 +332,22 @@
       "flags": []
     },
     {
+      "ticker": "SHELL.AS",
+      "nom": "SHELL PLC",
+      "score": 80,
+      "statut": "A VERIFIER — signal mais methode peu fiable ici (voir drapeaux)",
+      "pe": 11.9962015,
+      "roe": 14.341000000000001,
+      "ca_growth": 44.7,
+      "bfr_pct": 9.022953620647018,
+      "price": 47.385,
+      "currency": "EUR",
+      "sector": "Energy",
+      "flags": [
+        "CYCLIQUE — benefice possiblement au pic, PE bas trompeur"
+      ]
+    },
+    {
       "ticker": "BPE.MI",
       "nom": "BPER BANCA",
       "score": 75,
@@ -384,7 +400,7 @@
       "nom": "SOPRA STERIA GROUP",
       "score": 75,
       "statut": "INTERESSANT — surveiller, attendre confirmation",
-      "pe": 11.808237,
+      "pe": 11.900129,
       "roe": 14.576,
       "ca_growth": 4.1000000000000005,
       "bfr_pct": 7.928470254957507,
@@ -412,7 +428,7 @@
       "nom": "UNIPOL",
       "score": 75,
       "statut": "A VERIFIER — signal mais methode peu fiable ici (voir drapeaux)",
-      "pe": 10.776825,
+      "pe": 10.8232765,
       "roe": 16.938,
       "ca_growth": 23.200000000000003,
       "bfr_pct": null,
@@ -460,7 +476,7 @@
       "nom": "Bilfinger SE                  I",
       "score": 70,
       "statut": "INTERESSANT — surveiller, attendre confirmation",
-      "pe": 11.364542,
+      "pe": 11.164383,
       "roe": 14.723,
       "ca_growth": 7.199999999999999,
       "bfr_pct": 5.664271236410539,
