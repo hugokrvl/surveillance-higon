@@ -1,5 +1,5 @@
 {
-  "date": "04/11/2026 22:46",
+  "date": "04/11/2026 23:28",
   "nb": 31,
   "signaux": [
     {
@@ -70,7 +70,7 @@
       "nom": "WITBE",
       "score": 95,
       "statut": "FORT — initier position (3 tranches)",
-      "pe": 5.802817,
+      "pe": 5.722222,
       "roe": 60.01,
       "ca_growth": 33.6,
       "bfr_pct": 9.884434444671712,
@@ -308,7 +308,7 @@
       "nom": "RUBIS",
       "score": 85,
       "statut": "A VERIFIER — signal mais methode peu fiable ici (voir drapeaux)",
-      "pe": 11.064615,
+      "pe": 11.202492,
       "roe": 11.999,
       "ca_growth": 24.2,
       "bfr_pct": 10.119856881823441,
@@ -368,7 +368,7 @@
       "nom": "UNIPOL",
       "score": 75,
       "statut": "A VERIFIER — signal mais methode peu fiable ici (voir drapeaux)",
-      "pe": 11.400863,
+      "pe": 11.351932,
       "roe": 16.938,
       "ca_growth": 23.200000000000003,
       "bfr_pct": null,
@@ -460,7 +460,7 @@
       "nom": "INTESA SANPAOLO",
       "score": 65,
       "statut": "A VERIFIER — signal mais methode peu fiable ici (voir drapeaux)",
-      "pe": 11.021053,
+      "pe": 11.217857,
       "roe": 14.261,
       "ca_growth": 6.4,
       "bfr_pct": null,
