@@ -1,6 +1,6 @@
 {
-  "date": "11/11/2026 23:30",
-  "nb": 31,
+  "date": "12/11/2026 00:22",
+  "nb": 32,
   "signaux": [
     {
       "ticker": "AF.PA",
@@ -92,11 +92,25 @@
       "flags": []
     },
     {
+      "ticker": "A2A.MI",
+      "nom": "A2A",
+      "score": 90,
+      "statut": "FORT — initier position (3 tranches)",
+      "pe": 10.477273,
+      "roe": 11.337,
+      "ca_growth": 31.4,
+      "bfr_pct": 2.5183783390348644,
+      "price": 2.305,
+      "currency": "EUR",
+      "sector": "Utilities",
+      "flags": []
+    },
+    {
       "ticker": "ALWIT.PA",
       "nom": "WITBE",
       "score": 90,
       "statut": "FORT — initier position (3 tranches)",
-      "pe": 5.6805553,
+      "pe": 5.760564,
       "roe": 60.01,
       "ca_growth": 10.0,
       "bfr_pct": 9.884434444671712,
@@ -170,7 +184,7 @@
       "nom": "SHELL PLC",
       "score": 90,
       "statut": "A VERIFIER — signal mais methode peu fiable ici (voir drapeaux)",
-      "pe": 8.897178,
+      "pe": 8.721344,
       "roe": 17.432,
       "ca_growth": 36.199999999999996,
       "bfr_pct": 9.022953620647018,
@@ -306,7 +320,7 @@
       "nom": "KRONES AG                     I",
       "score": 75,
       "statut": "INTERESSANT — surveiller, attendre confirmation",
-      "pe": 11.59751,
+      "pe": 11.537668,
       "roe": 14.194,
       "ca_growth": 0.3,
       "bfr_pct": 12.512374710197397,
@@ -442,7 +456,7 @@
       "nom": "UNICREDIT",
       "score": 65,
       "statut": "A VERIFIER — signal mais methode peu fiable ici (voir drapeaux)",
-      "pe": 11.461225,
+      "pe": 11.202127,
       "roe": 16.136,
       "ca_growth": 11.600000000000001,
       "bfr_pct": null,
