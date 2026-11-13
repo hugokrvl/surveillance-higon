@@ -1,5 +1,5 @@
 {
-  "date": "13/11/2026 22:50",
+  "date": "13/11/2026 23:25",
   "nb": 30,
   "signaux": [
     {
@@ -412,7 +412,7 @@
       "nom": "INTESA SANPAOLO",
       "score": 65,
       "statut": "A VERIFIER — signal mais methode peu fiable ici (voir drapeaux)",
-      "pe": 11.1839285,
+      "pe": 10.98772,
       "roe": 14.694001,
       "ca_growth": 5.5,
       "bfr_pct": null,
