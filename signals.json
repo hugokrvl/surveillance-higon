@@ -1,6 +1,6 @@
 {
-  "date": "18/11/2026 23:53",
-  "nb": 31,
+  "date": "19/11/2026 00:19",
+  "nb": 32,
   "signaux": [
     {
       "ticker": "AF.PA",
@@ -156,7 +156,7 @@
       "nom": "SHELL PLC",
       "score": 90,
       "statut": "A VERIFIER — signal mais methode peu fiable ici (voir drapeaux)",
-      "pe": 8.737904,
+      "pe": 8.685371,
       "roe": 17.432,
       "ca_growth": 36.199999999999996,
       "bfr_pct": 9.022953620647018,
@@ -318,6 +318,20 @@
       ]
     },
     {
+      "ticker": "SOP.PA",
+      "nom": "SOPRA STERIA GROUP",
+      "score": 75,
+      "statut": "INTERESSANT — surveiller, attendre confirmation",
+      "pe": 11.657322,
+      "roe": 14.576,
+      "ca_growth": 4.1000000000000005,
+      "bfr_pct": 7.928470254957507,
+      "price": 187.1,
+      "currency": "EUR",
+      "sector": "Technology",
+      "flags": []
+    },
+    {
       "ticker": "TRI.PA",
       "nom": "TRIGANO",
       "score": 75,
@@ -428,7 +442,7 @@
       "nom": "INTESA SANPAOLO",
       "score": 65,
       "statut": "A VERIFIER — signal mais methode peu fiable ici (voir drapeaux)",
-      "pe": 10.640351,
+      "pe": 10.456897,
       "roe": 14.694001,
       "ca_growth": 5.5,
       "bfr_pct": null,
