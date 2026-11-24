@@ -1,5 +1,5 @@
 {
-  "date": "24/11/2026 03:47",
+  "date": "24/11/2026 04:12",
   "nb": 32,
   "signaux": [
     {
@@ -142,7 +142,7 @@
       "nom": "SHELL PLC",
       "score": 90,
       "statut": "A VERIFIER — signal mais methode peu fiable ici (voir drapeaux)",
-      "pe": 8.635081,
+      "pe": 8.447732,
       "roe": 17.432,
       "ca_growth": 36.199999999999996,
       "bfr_pct": 9.022953620647018,
@@ -216,7 +216,7 @@
       "nom": "RUBIS",
       "score": 85,
       "statut": "A VERIFIER — signal mais methode peu fiable ici (voir drapeaux)",
-      "pe": 10.929231,
+      "pe": 10.796352,
       "roe": 11.999,
       "ca_growth": 24.2,
       "bfr_pct": 10.119856881823441,
@@ -278,7 +278,7 @@
       "nom": "KRONES AG                     I",
       "score": 75,
       "statut": "INTERESSANT — surveiller, attendre confirmation",
-      "pe": 10.788382,
+      "pe": 10.688593,
       "roe": 14.194,
       "ca_growth": 0.3,
       "bfr_pct": 12.512374710197397,
@@ -460,7 +460,7 @@
       "nom": "UNICREDIT",
       "score": 65,
       "statut": "A VERIFIER — signal mais methode peu fiable ici (voir drapeaux)",
-      "pe": 10.212767,
+      "pe": 9.986997,
       "roe": 16.136,
       "ca_growth": 11.600000000000001,
       "bfr_pct": null,
